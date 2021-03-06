@@ -58,7 +58,10 @@ export default {
   components: {
     purchase,
   },
-  props: ["thisvendor", "toPersian"],
+  props: {
+    toPersian: Function,
+    thisvendor: Object,
+  },
   computed: {
     totalprice() {
       let sum = 0;
@@ -78,9 +81,86 @@ export default {
       return (this.totalprice / 300000) * 100 + "%";
     },
   },
-  methods: {},
 };
 </script>
 
-<style>
+<style scoped>
+.factor {
+  display: block;
+  border-bottom: #dfdfdf 1px solid;
+}
+
+.store {
+  padding: 20px 5px;
+  font-size: 14px;
+}
+
+.personal_photo {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-radius: 50%;
+}
+.name {
+  font-size: 12px;
+  position: relative;
+  right: 45px;
+  bottom: 5px;
+}
+.city {
+  font-size: 10px;
+  position: relative;
+  right: 45px;
+  bottom: 9px;
+}
+.loc_logo {
+  width: 10.67;
+  height: 13.32;
+  position: relative;
+  right: 45px;
+  bottom: 7px;
+}
+.free_delivery {
+  background: #eeeeee;
+  font-size: 12px;
+  margin: 20px 0;
+  position: relative;
+}
+.greenbar {
+  height: 100%;
+  background-color: #dff5f1;
+  position: absolute;
+}
+.fullgreen {
+  width: 100%;
+}
+.d_status {
+  display: inline-block;
+  color: #00786c;
+  margin: 5px;
+  position: relative;
+}
+.d_cond {
+  display: inline-block;
+  margin: 5px 0;
+  position: relative;
+}
+
+.copon {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.copon button {
+  font-size: 10px;
+  background-color: #eeeeee;
+  border: none;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  padding: 3px 7px;
+}
+.copon_logo {
+  margin-left: 2px;
+}
 </style>

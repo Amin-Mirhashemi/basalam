@@ -1,5 +1,5 @@
 <template>
-  <div class="continue" id="footer">
+  <div class="continue footer">
     <button
       class="cbutton thirdfooter"
       type="submit"
@@ -15,5 +15,9 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
+.thirdfooter {
+  width: 100%;
+  outline: none;
+}
 </style>

@@ -1,22 +1,11 @@
 <template>
   <div>
-    <div class="addAddress">
-      <router-link to="/" tag="button" class="back">
-        <img src="../../assets/back.png" class="backButton" />
-      </router-link>
-      آدرس ارسال
-      <button class="addAddressButton">
-        <img src="../../assets/plus.png" class="plusicon" />
-        آدرس جدید
-      </button>
-    </div>
-    <form name="addressForm">
-      <address-option
-        v-for="address in addresses"
-        :key="address.id"
-        :address="address"
-      ></address-option>
-    </form>
+    <address-header></address-header>
+    <address-option
+      v-for="address in addresses"
+      :key="address.id"
+      :address="address"
+    ></address-option>
     <page-footer :toPersian="toPersian" :vendors="vendors"></page-footer>
   </div>
 </template>
@@ -24,18 +13,22 @@
 <script>
 import footer from "./footer.vue";
 import addressOption from "./addressOption.vue";
+import addressHeader from "./addressHeader";
 export default {
   components: {
     pageFooter: footer,
     addressOption,
+    addressHeader,
+  },
+  props: {
+    toPersian: Function,
+    vendors: Array,
   },
   computed: {
     addresses() {
       return this.$store.getters.getaddress;
     },
   },
-  methods: {},
-  props: ["toPersian", "vendors"],
 };
 </script>
 

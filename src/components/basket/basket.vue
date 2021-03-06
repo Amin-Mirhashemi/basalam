@@ -16,14 +16,15 @@ import bnav from "./bnav.vue";
 import factor from "./factor.vue";
 import footer from "./footer.vue";
 export default {
-  computed: {},
   components: {
     bnav,
     factor,
     appFooter: footer,
   },
-  methods: {},
-  props: ["toPersian", "vendors"],
+  props: {
+    toPersian: Function,
+    vendors: Array,
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="continue" id="footer" v-if="numOfVendors > 0">
+  <div class="continue footer" v-if="numOfVendors > 0">
     <router-link to="/address">
-      <button class="cbutton" id="footerbutton">
+      <button class="cbutton footerbutton">
         ادامه خرید از {{ toPersian(numOfVendors) }} غرفه
       </button>
     </router-link>
@@ -15,10 +15,15 @@
       </span>
     </span>
   </div>
+  <div class="emptybasket" v-else>سبد خرید شما خالی است.</div>
 </template>
 
 <script>
 export default {
+  props: {
+    toPersian: Function,
+    vendors: Array,
+  },
   computed: {
     numOfVendors() {
       let sum = 0;
@@ -42,8 +47,22 @@ export default {
       return sum;
     },
   },
-  props: ["toPersian", "vendors"],
   methods: {},
 };
 </script>
 
+<style scoped>
+.emptybasket {
+  display: flex;
+  align-items: center;
+  color: #9d9d9d;
+  height: 500px;
+  justify-content: center;
+}
+
+.footerbutton {
+  height: 48px;
+  font-size: 16px;
+  padding: 10px;
+}
+</style>

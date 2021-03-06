@@ -2,7 +2,12 @@
   <div id="app" class="container">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <app-header :toPersian="toPersian" :vendors="vendors"></app-header>
-    <router-view :toPersian="toPersian" :vendors="vendors"></router-view>
+    <router-view
+      v-if="!isLoading"
+      :toPersian="toPersian"
+      :vendors="vendors"
+    ></router-view>
+    <div v-else class="loading">در حال بارگذاری اطلاعات</div>
   </div>
 </template>
 
@@ -11,22 +16,24 @@ import header from "./components/header.vue";
 
 export default {
   name: "app",
+  components: {
+    appHeader: header,
+  },
   data() {
     return {
+      isLoading: false,
       vendors: [],
     };
   },
   async mounted() {
+    this.isLoading = true;
     try {
       await this.$store.dispatch("getData");
       this.vendors = this.$store.getters.getvendors.vendors;
     } catch {
       this.vendors = [];
     }
-  },
-  computed: {},
-  components: {
-    appHeader: header,
+    this.isLoading = false;
   },
   methods: {
     toPersian(mynum) {
@@ -55,4 +62,103 @@ export default {
 </script>
   
 <style>
+/* global styles */
+
+.container div div {
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  position: relative;
+}
+form {
+  margin-bottom: 0;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
+input {
+  width: 100%;
+  border: none;
+  color: #7d7d7d;
+}
+input:focus {
+  outline: none;
+}
+
+.continue {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  font-size: 12px;
+}
+.footer {
+  position: sticky;
+  bottom: 0;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-top: #dfdfdf 1px solid;
+  background: #fff;
+  margin: 0;
+  overflow: visible;
+}
+
+.cbutton {
+  background-color: #df3856;
+  border-radius: 100px;
+  display: inline-block;
+  text-align: center;
+  font-size: 12px;
+  height: 32px;
+  width: 172px;
+  padding: 5px;
+  color: white;
+  box-sizing: border-box;
+  border: none;
+}
+
+.price {
+  direction: rtl;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: auto;
+}
+
+.toma {
+  font-weight: bold;
+  font-size: 10px;
+  position: relative;
+  top: 9px;
+}
+.nn {
+  font-weight: bold;
+  font-size: 10px;
+  position: absolute;
+  left: 4px;
+}
+.pnum {
+  margin: 5px;
+}
+
+.loading {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9d9d9d;
+}
 </style>

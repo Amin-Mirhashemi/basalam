@@ -1,12 +1,6 @@
 <template>
-  <div class="continue" id="footer">
-    <router-link
-      to="/payment"
-      tag="button"
-      class="cbutton"
-      id="footerbutton"
-      type="submit"
-      form="addressForm"
+  <div class="continue footer">
+    <router-link to="/payment" tag="button" class="cbutton footerbutton"
       >ادامه فرایند خرید</router-link
     >
 
@@ -24,7 +18,10 @@
 
 <script>
 export default {
-  props: ["toPersian", "vendors"],
+  props: {
+    toPersian: Function,
+    vendors: Array,
+  },
   computed: {
     finalprice() {
       let sum = 0;
@@ -39,5 +36,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.footerbutton {
+  height: 48px;
+  font-size: 16px;
+  padding: 10px;
+}
 </style>

@@ -14,12 +14,20 @@
 <script>
 import product from "./product";
 export default {
-  props: ["vendor", "toPersian"],
   components: {
     product,
+  },
+  props: {
+    vendor: Object,
+    toPersian: Function,
   },
 };
 </script>
 
-<style>
+<style scoped>
+.vendor {
+  font-size: 14px;
+  padding-top: 15px;
+  border-bottom: 1px solid #eeeeee;
+}
 </style>

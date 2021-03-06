@@ -31,11 +31,6 @@ export default new Vuex.Store({
                     }
                 }
             }
-            try {
-                await axios.post('https://mini-cart.iran.liara.run/v1/cart/send',state.vendors)
-            } catch {
-                console.log('error')
-            }
         },
         delete(state, id){
             for(let vendor of state.vendors.vendors){
