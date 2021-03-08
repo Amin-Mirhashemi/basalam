@@ -23,7 +23,7 @@ export default new Vuex.Store({
         }
     },
     mutations:{
-        async change(state,{ id, x}){
+        change(state,{ id, x}){
             for(let vendor of state.vendors.vendors){
                 for(let pro of vendor.items){
                     if(pro.id == id){
@@ -51,13 +51,10 @@ export default new Vuex.Store({
         },
         getData(state, data) {
             state.vendors = data
-        },
-        sendData(state) {
-            axios.post('https://mini-cart.iran.liara.run/v1/cart/send',state.vendors)
         }
     },
     actions:{
-        async change(context,{ id, x}){
+        change(context,{ id, x}){
             context.commit('change',{ id, x })
         },
         delete(context, id){

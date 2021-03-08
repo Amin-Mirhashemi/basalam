@@ -18,6 +18,5 @@ export default {};
 <style scoped>
 .thirdfooter {
   width: 100%;
-  outline: none;
 }
 </style>

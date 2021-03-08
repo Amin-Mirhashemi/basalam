@@ -116,6 +116,11 @@ input:focus {
   overflow: visible;
 }
 
+.footer button {
+  height: 48px;
+  font-size: 16px;
+}
+
 .cbutton {
   background-color: #df3856;
   border-radius: 100px;
