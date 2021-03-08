@@ -2,7 +2,7 @@
   <div>
     <payment-header></payment-header>
     <payment-options></payment-options>
-    <Summary :vendors="vendors" :toPersian="toPersian"></Summary>
+    <Summary :vendors="vendors" :toPersian="toPersian" />
     <page-footer></page-footer>
   </div>
 </template>

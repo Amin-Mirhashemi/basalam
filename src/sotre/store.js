@@ -27,7 +27,7 @@ export default new Vuex.Store({
             for(let vendor of state.vendors.vendors){
                 for(let pro of vendor.items){
                     if(pro.id == id){
-                        if(pro.quantity + x >= 0) pro.quantity += x
+                        if(pro.quantity + x >= 0 && pro.quantity + x <= pro.product.stock) pro.quantity += x
                     }
                 }
             }
@@ -49,7 +49,7 @@ export default new Vuex.Store({
         changeAddress(state, id){
             state.chosenAddress = id
         },
-        getData(state, data) {
+        setData(state, data) {
             state.vendors = data
         }
     },
@@ -64,12 +64,8 @@ export default new Vuex.Store({
             context.commit('changeAddress', id)
         },
         async getData(context) {
-            try {
-                let data = await axios.get('https://mini-cart.iran.liara.run/v1/cart')
-                context.commit('getData', data.data)
-            } catch {
-                context.commit('getData', null)
-            }
+            let data = await axios.get('https://mini-cart.iran.liara.run/v1/cart')
+            context.commit('setData', data.data)
         },
     }
 })

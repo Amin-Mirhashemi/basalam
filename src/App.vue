@@ -2,12 +2,12 @@
   <div id="app" class="container">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <app-header :toPersian="toPersian" :vendors="vendors"></app-header>
-    <router-view
-      v-if="!isLoading"
-      :toPersian="toPersian"
-      :vendors="vendors"
-    ></router-view>
-    <div v-else class="loading">در حال بارگذاری اطلاعات</div>
+    <div v-if="isLoading" class="loading">در حال بارگذاری اطلاعات</div>
+    <div v-else-if="errorWithLoading" class="loading">
+      بارگذاری ناموفق
+      <button @click="loadData" class="retry">تلاش مجدد</button>
+    </div>
+    <router-view v-else :toPersian="toPersian" :vendors="vendors"></router-view>
   </div>
 </template>
 
@@ -22,18 +22,12 @@ export default {
   data() {
     return {
       isLoading: false,
+      errorWithLoading: false,
       vendors: [],
     };
   },
-  async mounted() {
-    this.isLoading = true;
-    try {
-      await this.$store.dispatch("getData");
-      this.vendors = this.$store.getters.getvendors.vendors;
-    } catch {
-      this.vendors = [];
-    }
-    this.isLoading = false;
+  mounted() {
+    this.loadData();
   },
   methods: {
     toPersian(mynum) {
@@ -57,11 +51,30 @@ export default {
       }
       return result;
     },
+    async loadData() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("getData");
+        this.vendors = this.$store.getters.getvendors.vendors;
+        this.errorWithLoading = false;
+      } catch {
+        this.errorWithLoading = true;
+      }
+      this.isLoading = false;
+    },
   },
 };
 </script>
   
 <style>
+.retry {
+  background-color: black;
+  color: white;
+  margin-right: 10px;
+  height: 32px;
+  border-radius: 100px;
+  padding: 0 10px;
+}
 /* global styles */
 
 .container div div {
