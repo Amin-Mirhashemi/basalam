@@ -64,8 +64,8 @@ export default new Vuex.Store({
             context.commit('changeAddress', id)
         },
         async getData(context) {
-            let data = await axios.get('https://mini-cart.iran.liara.run/v1/cart')
-            context.commit('setData', data.data)
+            let response = await axios.get('https://mini-cart.iran.liara.run/v1/cart')
+            context.commit('setData', response.data)
         },
     }
 })

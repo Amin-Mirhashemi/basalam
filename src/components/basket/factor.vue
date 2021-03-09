@@ -30,7 +30,7 @@
         کنید</span
       >
     </div>
-    <div class="copon" v-if="thisvendor.havecopon && purnum > 0">
+    <div class="copon" v-if="purnum > 0">
       <button>
         <img src="../../assets/Vector (1).png" class="copon_logo" />
         ثبت كد تخفيف غرفه

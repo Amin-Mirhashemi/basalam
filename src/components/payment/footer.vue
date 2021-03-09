@@ -1,13 +1,6 @@
 <template>
   <div class="continue footer">
-    <button
-      class="cbutton thirdfooter"
-      type="submit"
-      form="gateawyForm"
-      id="footerbutton"
-    >
-      پرداخت
-    </button>
+    <button class="cbutton thirdfooter" id="footerbutton">پرداخت</button>
   </div>
 </template>
 

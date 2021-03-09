@@ -59,14 +59,31 @@ export default {
         this.errorWithLoading = false;
       } catch {
         this.errorWithLoading = true;
+      } finally {
+        this.isLoading = false;
       }
-      this.isLoading = false;
     },
   },
 };
 </script>
   
 <style>
+/* global styles */
+@font-face {
+  font-family: iransans;
+  src: url("./assets/fonts/IRANSansWeb.eot");
+}
+
+* {
+  font-family: iransans;
+  direction: rtl;
+}
+
+body {
+  margin-bottom: 0;
+  padding: 0 5px;
+}
+
 .retry {
   background-color: black;
   color: white;
@@ -75,7 +92,6 @@ export default {
   border-radius: 100px;
   padding: 0 10px;
 }
-/* global styles */
 
 .container div div {
   overflow: hidden;

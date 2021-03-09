@@ -2,7 +2,10 @@
   <div>
     <payment-header></payment-header>
     <payment-options></payment-options>
-    <Summary :vendors="vendors" :toPersian="toPersian" />
+    <purchase-summary
+      :vendors="vendors"
+      :toPersian="toPersian"
+    ></purchase-summary>
     <page-footer></page-footer>
   </div>
 </template>
@@ -11,13 +14,13 @@
 import footer from "./footer.vue";
 import paymentHeader from "./paymentHeader";
 import paymentOptions from "./payOptions";
-import Summary from "./summary";
+import purchaseSummary from "./summary";
 export default {
   components: {
     pageFooter: footer,
     paymentHeader,
     paymentOptions,
-    Summary,
+    purchaseSummary,
   },
   props: {
     toPersian: Function,
